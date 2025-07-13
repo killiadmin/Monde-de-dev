@@ -1,0 +1,15 @@
+<mat-toolbar class="toolbar desktop-only" *ngIf="showNavbar">
+  <button mat-icon-button (click)="isMenuOpen = !isMenuOpen" class="mobile-menu-button">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <a routerLink="/" class="logo">
+    <img [src]="logoPath" alt="Logo MDD">
+  </a>
+
+  <nav class="nav-links" *ngIf="showNavLinks">
+    <a mat-button routerLink="/">Se déconnecter</a>
+    <a mat-button routerLink="/articles">Articles</a>
+    <a mat-button routerLink="/themes">Thèmes</a>
+  </nav>
+</mat-toolbar>
