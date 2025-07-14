@@ -1,0 +1,24 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>
+      {{ mode === 'register' ? "Nom d'utilisateur" : "E-mail ou nom d'utilisateur" }}
+    </mat-label>
+    <input matInput formControlName="username" required>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="mode === 'register'" appearance="outline" class="full-width">
+    <mat-label>Adresse e-mail</mat-label>
+    <input matInput type="email" formControlName="email" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Mot de passe</mat-label>
+    <input matInput type="password" formControlName="password" required>
+  </mat-form-field>
+
+  <div class="auth-form-button">
+    <button mat-flat-button color="primary" type="submit" class="full-width">
+      {{ mode === 'register' ? "S'inscrire" : "Se connecter" }}
+    </button>
+  </div>
+</form>
