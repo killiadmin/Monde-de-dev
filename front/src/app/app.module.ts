@@ -17,9 +17,18 @@ import {NgModule} from '@angular/core';
 import {NgOptimizedImage} from "@angular/common";
 import {ReactiveFormsModule} from '@angular/forms';
 import { AuthComponent } from './pages/auth/auth.component';
+import { ArticlesComponent } from './pages/articles/articles.component';
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NavbarComponent, AuthFormComponent, AuthComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    NavbarComponent,
+    AuthFormComponent,
+    AuthComponent,
+    ArticlesComponent
+  ],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -34,6 +43,7 @@ import { AuthComponent } from './pages/auth/auth.component';
     MatToolbarModule,
     NgOptimizedImage,
     ReactiveFormsModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

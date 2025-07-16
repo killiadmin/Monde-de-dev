@@ -1,3 +1,4 @@
+import {ArticlesComponent} from "./pages/articles/articles.component";
 import {AuthComponent} from "./pages/auth/auth.component";
 import {HomeComponent} from './pages/home/home.component';
 import {NgModule} from '@angular/core';
@@ -9,6 +10,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: AuthComponent, data: {mode: 'login'}},
   {path: 'register', component: AuthComponent, data: {mode: 'register'}},
+  {path: 'articles', component: ArticlesComponent},
 ];
 
 @NgModule({

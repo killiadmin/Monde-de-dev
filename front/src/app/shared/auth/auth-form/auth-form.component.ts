@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-form',
@@ -12,7 +13,7 @@ export class AuthFormComponent implements OnInit {
 
   form!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,  private router: Router) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -29,6 +30,7 @@ export class AuthFormComponent implements OnInit {
   submit(): void {
     if (this.form.valid) {
       this.formSubmitted.emit(this.form);
+      this.router.navigate(['/articles']);
     }
   }
 }

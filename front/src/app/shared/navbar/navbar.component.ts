@@ -24,8 +24,17 @@ export class NavbarComponent implements OnInit {
     ).subscribe((event: any) => {
       const currentUrl = event.urlAfterRedirects;
 
-      this.showNavbar = currentUrl !== '/';
       this.showNavLinks = currentUrl !== '/login' && currentUrl !== '/register';
+
+      if (this.showNavLinks) {
+        this.showNavbar = currentUrl !== '/';
+      } else {
+        this.showNavbar = this._isDesktop() && currentUrl !== '/';
+      }
     });
+  }
+
+  private _isDesktop(): boolean {
+    return window.innerWidth > 768;
   }
 }

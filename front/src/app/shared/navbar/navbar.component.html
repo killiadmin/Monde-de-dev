@@ -1,4 +1,4 @@
-<mat-toolbar class="toolbar desktop-only" *ngIf="showNavbar">
+<mat-toolbar class="toolbar" [class.has-nav-links]="showNavLinks" *ngIf="showNavbar">
   <button mat-icon-button (click)="isMenuOpen = !isMenuOpen" class="mobile-menu-button">
     <mat-icon>menu</mat-icon>
   </button>
