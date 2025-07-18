@@ -1,0 +1,137 @@
+::ng-deep .mat-card {
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.page-container {
+  padding: 50px 300px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 10px 0;
+  }
+}
+
+.card-subtitle-row {
+  display: flex;
+  gap: 30px;
+  padding: 0 16px 8px;
+  align-items: baseline;
+  @media (max-width: 768px) {
+    padding: 10px 16px 8px;
+  }
+}
+
+.comments-title {
+  padding: 16px;
+  margin-bottom: 24px;
+  font-weight: lighter;
+}
+
+.comments-section {
+  padding: 0 150px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  @media (max-width: 768px) {
+    padding: 0 15px 50px 15px;
+  }
+}
+
+.comment-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.comment-username {
+  min-width: 100px;
+  padding-top: 6px;
+  @media (max-width: 768px) {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
+
+.comment-card {
+  flex: 1;
+  background-color: #f5f5f5;
+  padding: 8px 16px;
+}
+
+.comment-text {
+  color: #555;
+}
+
+.comment-form-container {
+  padding: 0 50px 50px;
+
+  @media (max-width: 768px) {
+    padding: 0 15px 50px 15px;
+    display: flex;
+    justify-content: center;
+  }
+
+}
+
+.comment-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.comment-input {
+  flex: 1;
+}
+
+.send-button {
+  height: 56px;
+  background-color: white;
+  border: none;
+}
+
+.send-icon {
+  transform: rotate(310deg);
+}
+
+.arrow-container {
+  position: relative;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.mat-card-header {
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+}
+
+.mat-focus-indicator {
+  @media (max-width: 768px) {
+    width: fit-content;
+  }
+}
+
+.mat-form-field {
+  @media (max-width: 768px) {
+    min-width: 300px;
+  }
+}
+
+.back-button {
+  position: absolute;
+  left: 37px;
+  top: 55px;
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    left: 30px;
+    top: 15px;
+  }
+}

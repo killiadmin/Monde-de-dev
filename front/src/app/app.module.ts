@@ -17,8 +17,9 @@ import {NgModule} from '@angular/core';
 import {NgOptimizedImage} from "@angular/common";
 import {ReactiveFormsModule} from '@angular/forms';
 import { AuthComponent } from './pages/auth/auth.component';
-import { ArticlesComponent } from './pages/articles/articles.component';
+import { ListComponent } from './pages/articles/list/list.component';
 import {MatCardModule} from "@angular/material/card";
+import { DetailsComponent } from './pages/articles/details/details.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {MatCardModule} from "@angular/material/card";
     NavbarComponent,
     AuthFormComponent,
     AuthComponent,
-    ArticlesComponent
+    ListComponent,
+    DetailsComponent
   ],
   imports: [
     AppRoutingModule,
