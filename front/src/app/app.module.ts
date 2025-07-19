@@ -22,6 +22,7 @@ import {MatCardModule} from "@angular/material/card";
 import { DetailsComponent } from './pages/articles/details/details.component';
 import { NewComponent } from './pages/articles/new/new.component';
 import {MatSelectModule} from "@angular/material/select";
+import { ProfileComponent } from './pages/user/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {MatSelectModule} from "@angular/material/select";
     AuthComponent,
     ListComponent,
     DetailsComponent,
-    NewComponent
+    NewComponent,
+    ProfileComponent
   ],
   imports: [
     AppRoutingModule,

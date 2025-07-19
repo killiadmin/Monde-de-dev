@@ -4,6 +4,7 @@ import {DetailsComponent} from "./pages/articles/details/details.component";
 import {HomeComponent} from './pages/home/home.component';
 import {NewComponent} from "./pages/articles/new/new.component";
 import {NgModule} from '@angular/core';
+import {ProfileComponent} from "./pages/user/profile/profile.component";
 import {RouterModule, Routes} from '@angular/router';
 
 // consider a guard combined with canLoad / canActivate route option
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'articles', title: 'Liste des articles', component: ListComponent},
   {path: 'articles/details/:id', title: 'Détails de l\'article', component: DetailsComponent},
   {path: 'articles/new', title: 'Création d\'un article', component: NewComponent},
+  {path: 'profile', title: 'Profil de l\'utilisateur', component: ProfileComponent},
 ];
 
 @NgModule({
