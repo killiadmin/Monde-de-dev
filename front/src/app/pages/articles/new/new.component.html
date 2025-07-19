@@ -1,0 +1,44 @@
+<div class="auth-container">
+  <div class="header">
+    <div class="arrow-container">
+      <button mat-icon-button routerLink="/articles" class="back-button">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+
+    <h1>Créer un nouvel article</h1>
+
+    <div class="empty-balise"></div>
+  </div>
+
+  <div class="form-container">
+    <form>
+      <div class="form-fields">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Sélectionner un thème</mat-label>
+          <mat-select required>
+            <mat-option value="technologie">Technologie</mat-option>
+            <mat-option value="science">Science</mat-option>
+            <mat-option value="culture">Culture</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Titre de l'article</mat-label>
+          <input matInput required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Contenu de l'article</mat-label>
+          <textarea matInput required rows="8"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="form-button">
+        <button mat-flat-button color="primary">
+          Créer
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

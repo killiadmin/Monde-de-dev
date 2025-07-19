@@ -20,6 +20,8 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { ListComponent } from './pages/articles/list/list.component';
 import {MatCardModule} from "@angular/material/card";
 import { DetailsComponent } from './pages/articles/details/details.component';
+import { NewComponent } from './pages/articles/new/new.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { DetailsComponent } from './pages/articles/details/details.component';
     AuthFormComponent,
     AuthComponent,
     ListComponent,
-    DetailsComponent
+    DetailsComponent,
+    NewComponent
   ],
   imports: [
     AppRoutingModule,
@@ -46,6 +49,7 @@ import { DetailsComponent } from './pages/articles/details/details.component';
     NgOptimizedImage,
     ReactiveFormsModule,
     MatCardModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

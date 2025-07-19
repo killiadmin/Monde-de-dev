@@ -2,6 +2,7 @@ import {ListComponent} from "./pages/articles/list/list.component";
 import {AuthComponent} from "./pages/auth/auth.component";
 import {DetailsComponent} from "./pages/articles/details/details.component";
 import {HomeComponent} from './pages/home/home.component';
+import {NewComponent} from "./pages/articles/new/new.component";
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'register', title: 'Inscription', component: AuthComponent, data: {mode: 'register'}},
   {path: 'articles', title: 'Liste des articles', component: ListComponent},
   {path: 'articles/details/:id', title: 'Détails de l\'article', component: DetailsComponent},
+  {path: 'articles/new', title: 'Création d\'un article', component: NewComponent},
 ];
 
 @NgModule({

@@ -1,0 +1,60 @@
+.auth-container {
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+
+  .empty-balise {
+    width: 24px;
+  }
+}
+
+.arrow-container {
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  width: 100%;
+  max-width: 500px;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+
+  button {
+    width: 40%;
+  }
+}
