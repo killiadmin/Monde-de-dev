@@ -3,10 +3,10 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-articles',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  templateUrl: './articles_list.component.html',
+  styleUrls: ['./articles_list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class Articles_listComponent implements OnInit {
 
   constructor(private router: Router) {}
 

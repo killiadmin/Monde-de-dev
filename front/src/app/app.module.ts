@@ -17,12 +17,13 @@ import {NgModule} from '@angular/core';
 import {NgOptimizedImage} from "@angular/common";
 import {ReactiveFormsModule} from '@angular/forms';
 import { AuthComponent } from './pages/auth/auth.component';
-import { ListComponent } from './pages/articles/list/list.component';
+import { Articles_listComponent } from './pages/articles/list/articles_list.component';
 import {MatCardModule} from "@angular/material/card";
 import { DetailsComponent } from './pages/articles/details/details.component';
 import { NewComponent } from './pages/articles/new/new.component';
 import {MatSelectModule} from "@angular/material/select";
 import { ProfileComponent } from './pages/user/profile/profile.component';
+import {Themes_ListComponent} from './pages/themes/list/themes_list.component';
 
 @NgModule({
   declarations: [
@@ -31,10 +32,11 @@ import { ProfileComponent } from './pages/user/profile/profile.component';
     NavbarComponent,
     AuthFormComponent,
     AuthComponent,
-    ListComponent,
+    Articles_listComponent,
     DetailsComponent,
     NewComponent,
-    ProfileComponent
+    ProfileComponent,
+    Themes_ListComponent
   ],
   imports: [
     AppRoutingModule,
