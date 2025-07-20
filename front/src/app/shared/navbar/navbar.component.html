@@ -1,16 +1,16 @@
 <mat-toolbar class="toolbar" [class.has-nav-links]="showNavLinks" *ngIf="showNavbar">
-  <button mat-icon-button (click)="isMenuOpen = !isMenuOpen" class="mobile-menu-button">
-    <mat-icon>menu</mat-icon>
+  <button mat-icon-button (click)="toggleMenu()" class="mobile-menu-button">
+    <mat-icon>{{ isMenuOpen ? 'close' : 'menu' }}</mat-icon>
   </button>
 
   <a routerLink="/" class="logo">
     <img [src]="logoPath" alt="Logo MDD">
   </a>
 
-  <nav class="nav-links" *ngIf="showNavLinks">
-    <a mat-button routerLink="/">Se déconnecter</a>
-    <a mat-button routerLink="/articles">Articles</a>
-    <a mat-button routerLink="/themes">Thèmes</a>
-    <a mat-button routerLink="/profile"><mat-icon>account_circle</mat-icon></a>
+  <nav class="nav-links" *ngIf="showNavLinks" [class.open]="isMenuOpen">
+  <a mat-button routerLink="/" (click)="closeMenu()">Se déconnecter</a>
+    <a mat-button routerLink="/articles" (click)="closeMenu()">Articles</a>
+    <a mat-button routerLink="/themes" (click)="closeMenu()">Thèmes</a>
+    <a mat-button routerLink="/profile" (click)="closeMenu()"><mat-icon>account_circle</mat-icon></a>
   </nav>
 </mat-toolbar>

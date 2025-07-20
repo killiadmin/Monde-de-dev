@@ -9,7 +9,6 @@
   top: 0;
   z-index: 1000;
   justify-content: space-between;
-}
 
 .logo img {
   height: 60px;
@@ -18,34 +17,49 @@
   display: block;
 }
 
-.nav-links {
-  display: flex;
-  gap: 20px;
-}
-
-.mobile-menu-button {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .toolbar {
-    height: 56px;
-    flex-direction: row-reverse;
-
-    &:not(.has-nav-links) {
-      display: none;
-    }
-  }
-
-  .logo img {
-    height: 32px;
-  }
-
   .nav-links {
-    display: none;
+    display: flex;
+    gap: 20px;
   }
 
   .mobile-menu-button {
-    display: block;
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: row-reverse;
+    height: 56px;
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 56px;
+      right: 0;
+      background-color: white;
+      width: 50%;
+      padding: 10px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 999;
+      border: 1px solid black;
+
+      &.open {
+        display: flex;
+      }
+
+      a {
+        padding: 10px 20px;
+        text-align: left;
+      }
+    }
+
+    .mobile-menu-button {
+      display: block;
+    }
+
+    .mat-button{
+      display: flex;
+      flex-direction: row-reverse;
+    }
   }
 }
