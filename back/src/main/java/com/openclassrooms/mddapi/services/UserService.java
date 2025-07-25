@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.services;
 
-
 import com.openclassrooms.mddapi.repository.UserRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
