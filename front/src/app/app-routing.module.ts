@@ -1,6 +1,6 @@
-import {Articles_listComponent} from "./features/articles/components/articles-list/articles_list.component";
+import {Articles_listComponent} from "./features/articles/components/list/articles_list.component";
 import {AuthGuard} from "./auth/auth.guard";
-import {DetailsComponent} from "./pages/articles/details/details.component";
+import {Article_detailsComponent} from "./features/articles/components/details/article_details.component";
 import {HomeComponent} from './pages/home/home.component';
 import {LoginComponent} from "./pages/login/login.component";
 import {NewComponent} from "./pages/articles/new/new.component";
@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'register', title: 'Inscription', component: RegisterComponent},
   {path: 'articles', title: 'Liste des articles', component: Articles_listComponent, canActivate: [AuthGuard]},
   {path: 'themes', title: 'Liste des thèmes', component: Themes_ListComponent, canActivate: [AuthGuard]},
-  {path: 'articles/details/:id', title: 'Détails de l\'article', component: DetailsComponent, canActivate: [AuthGuard]},
+  {path: 'articles/details/:id', title: 'Détails de l\'article', component: Article_detailsComponent, canActivate: [AuthGuard]},
   {path: 'articles/new', title: 'Création d\'un article', component: NewComponent, canActivate: [AuthGuard]},
   {path: 'profile', title: 'Profil de l\'utilisateur', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: 'login'}

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Data
 @Service
@@ -18,13 +19,18 @@ public class ArticleService {
     private final ArticleRepository articleRepository;
 
     public Map<String, List<ArticleDTO>> getAllArticles() {
-        List<Article> articles = articleRepository.findAll();
+        List<Article> articles = articleRepository.findAllByOrderByCreatedAtDesc();
 
         List<ArticleDTO> articleDTOs = articles.stream()
                 .map(this::mapToDTO)
                 .toList();
 
         return Map.of("articles", articleDTOs);
+    }
+
+    public Optional<ArticleDTO> getArticleById(final Long id) {
+        return articleRepository.findById(id)
+                .map(this::mapToDTO);
     }
 
     private ArticleDTO mapToDTO(Article article) {
@@ -34,8 +40,8 @@ public class ArticleService {
                 article.getArt_content(),
                 article.getArt_author().getUsername(),
                 article.getThem_associated().getThem_title(),
-                article.getCreated_at(),
-                article.getUpdated_at()
+                article.getCreatedAt(),
+                article.getUpdatedAt()
         );
     }
 }

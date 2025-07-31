@@ -1,0 +1,65 @@
+<div class="arrow-container">
+  <button mat-icon-button routerLink="/articles" class="back-button" aria-label="Retour">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+</div>
+
+<div class="page-container" *ngIf="article$ | async as article">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ article.title }}</mat-card-title>
+    </mat-card-header>
+
+    <div class="card-subtitle-row">
+      <mat-card-subtitle>{{ formatDate(article.createdAt) }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ article.authorName }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ article.themeTitle }}</mat-card-subtitle>
+    </div>
+
+    <mat-card-content>
+      {{ article.content }}
+    </mat-card-content>
+  </mat-card>
+
+  <hr />
+
+  <h2 class="comments-title">Commentaires</h2>
+
+  <div class="comments-section">
+    <div class="comment-block">
+      <div class="comment-username">john_doe</div>
+      <mat-card class="comment-card">
+        <mat-card-content class="comment-text">
+          bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="comment-block">
+      <div class="comment-username">jane_doe</div>
+      <mat-card class="comment-card">
+        <mat-card-content class="comment-text">
+          bla bla bla bla bla
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="comment-form-container">
+    <mat-card>
+      <mat-card-content>
+        <form>
+          <div class="comment-form">
+            <mat-form-field appearance="fill" class="comment-input">
+              <mat-label>Écrivez ici votre commentaire</mat-label>
+              <textarea matInput rows="4"></textarea>
+            </mat-form-field>
+            <button mat-stroked-button color="primary" type="submit" class="send-button">
+              <mat-icon color="primary" class="send-icon">send</mat-icon>
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

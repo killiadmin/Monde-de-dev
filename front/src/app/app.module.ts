@@ -1,9 +1,9 @@
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {Articles_listComponent} from './features/articles/components/articles-list/articles_list.component';
+import {Articles_listComponent} from './features/articles/components/list/articles_list.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DetailsComponent} from './pages/articles/details/details.component';
+import {Article_detailsComponent} from './features/articles/components/details/article_details.component';
 import {HomeComponent} from './pages/home/home.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http'; // Ajout HttpClientModule
 import {LoginComponent} from './pages/login/login.component';
@@ -34,7 +34,7 @@ import {TokenInterceptor} from './auth/token.interceptor';
     HomeComponent,
     NavbarComponent,
     Articles_listComponent,
-    DetailsComponent,
+    Article_detailsComponent,
     NewComponent,
     ProfileComponent,
     Themes_ListComponent,
