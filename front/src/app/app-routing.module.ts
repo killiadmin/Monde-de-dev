@@ -1,4 +1,4 @@
-import {Articles_listComponent} from "./pages/articles/list/articles_list.component";
+import {Articles_listComponent} from "./features/articles/components/articles-list/articles_list.component";
 import {AuthGuard} from "./auth/auth.guard";
 import {DetailsComponent} from "./pages/articles/details/details.component";
 import {HomeComponent} from './pages/home/home.component';

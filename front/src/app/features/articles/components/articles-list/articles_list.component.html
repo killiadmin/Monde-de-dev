@@ -1,0 +1,35 @@
+<div class="header-container">
+  <button mat-flat-button color="primary" routerLink="/articles/new">
+    Créer un article
+  </button>
+
+  <div class="sort-container">
+    <span>Trier par</span>
+    <mat-icon>{{ isAsc ? 'arrow_upward' : 'arrow_downward' }}</mat-icon>
+  </div>
+</div>
+
+<div *ngIf="articles.length === 0" class="no-articles">
+  <p>Aucun article trouvé.</p>
+</div>
+
+<div *ngIf="articles.length > 0" class="color-black cards-grid">
+  <mat-card *ngFor="let article of articles" class="article-card" (click)="goToDetails(article.id)">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{ article.title }}</mat-card-title>
+        <div class="subtitle-container">
+          <mat-card-subtitle>
+            {{ formatDate(article.createdAt) }}
+          </mat-card-subtitle>
+          <mat-card-subtitle>
+            {{ article.authorName }}
+          </mat-card-subtitle>
+        </div>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content class="ellipsis-multiline" [title]="article.content">
+      {{ article.content }}
+    </mat-card-content>
+  </mat-card>
+</div>
