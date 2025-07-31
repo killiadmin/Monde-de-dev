@@ -10,12 +10,12 @@
   z-index: 1000;
   justify-content: space-between;
 
-.logo img {
-  height: 60px;
-  width: auto;
-  object-fit: contain;
-  display: block;
-}
+  .logo img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
 
   .nav-links {
     display: flex;
@@ -24,6 +24,10 @@
 
   .mobile-menu-button {
     display: none;
+  }
+
+  .btn-logout {
+    color: darkred;
   }
 
   @media (max-width: 768px) {
@@ -57,7 +61,7 @@
       display: block;
     }
 
-    .mat-button{
+    .mat-button {
       display: flex;
       flex-direction: row-reverse;
     }

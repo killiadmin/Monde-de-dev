@@ -7,10 +7,12 @@
     <img [src]="logoPath" alt="Logo MDD">
   </a>
 
-  <nav class="nav-links" *ngIf="showNavLinks" [class.open]="isMenuOpen">
-  <a mat-button routerLink="/" (click)="closeMenu()">Se déconnecter</a>
+  <nav class="nav-links" *ngIf="showNavLinks && isLoggedIn()" [class.open]="isMenuOpen">
+    <a mat-button class="btn-logout" (click)="logout()">Se déconnecter</a>
     <a mat-button routerLink="/articles" (click)="closeMenu()">Articles</a>
     <a mat-button routerLink="/themes" (click)="closeMenu()">Thèmes</a>
-    <a mat-button routerLink="/profile" (click)="closeMenu()"><mat-icon>account_circle</mat-icon></a>
+    <a mat-button routerLink="/profile" (click)="closeMenu()">
+      <mat-icon>account_circle</mat-icon>
+    </a>
   </nav>
 </mat-toolbar>

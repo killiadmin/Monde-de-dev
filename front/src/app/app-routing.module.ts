@@ -1,10 +1,12 @@
 import {Articles_listComponent} from "./pages/articles/list/articles_list.component";
-import {AuthComponent} from "./pages/auth/auth.component";
+import {AuthGuard} from "./auth/auth.guard";
 import {DetailsComponent} from "./pages/articles/details/details.component";
 import {HomeComponent} from './pages/home/home.component';
+import {LoginComponent} from "./pages/login/login.component";
 import {NewComponent} from "./pages/articles/new/new.component";
 import {NgModule} from '@angular/core';
 import {ProfileComponent} from "./pages/user/profile/profile.component";
+import {RegisterComponent} from "./pages/register/register.component";
 import {RouterModule, Routes} from '@angular/router';
 import {Themes_ListComponent} from "./pages/themes/list/themes_list.component";
 
@@ -12,13 +14,14 @@ import {Themes_ListComponent} from "./pages/themes/list/themes_list.component";
 // to manage unauthenticated user to access private routes
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'login', title: 'Connexion', component: AuthComponent, data: {mode: 'login'}},
-  {path: 'register', title: 'Inscription', component: AuthComponent, data: {mode: 'register'}},
-  {path: 'articles', title: 'Liste des articles', component: Articles_listComponent},
-  {path: 'themes', title: 'Liste des thèmes', component: Themes_ListComponent},
-  {path: 'articles/details/:id', title: 'Détails de l\'article', component: DetailsComponent},
-  {path: 'articles/new', title: 'Création d\'un article', component: NewComponent},
-  {path: 'profile', title: 'Profil de l\'utilisateur', component: ProfileComponent},
+  {path: 'login', title: 'Connexion', component: LoginComponent},
+  {path: 'register', title: 'Inscription', component: RegisterComponent},
+  {path: 'articles', title: 'Liste des articles', component: Articles_listComponent, canActivate: [AuthGuard]},
+  {path: 'themes', title: 'Liste des thèmes', component: Themes_ListComponent, canActivate: [AuthGuard]},
+  {path: 'articles/details/:id', title: 'Détails de l\'article', component: DetailsComponent, canActivate: [AuthGuard]},
+  {path: 'articles/new', title: 'Création d\'un article', component: NewComponent, canActivate: [AuthGuard]},
+  {path: 'profile', title: 'Profil de l\'utilisateur', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: '**', redirectTo: 'login'}
 ];
 
 @NgModule({

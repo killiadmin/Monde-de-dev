@@ -1,3 +1,4 @@
+import { AuthService } from "../../auth/auth.service";
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -14,7 +15,7 @@ export class NavbarComponent implements OnInit {
   showNavbar = true;
   showNavLinks = true;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public auth: AuthService) { }
 
   ngOnInit(): void {
     this.router.events.pipe(
@@ -41,6 +42,14 @@ export class NavbarComponent implements OnInit {
 
   closeMenu(): void {
     this.isMenuOpen = false;
+  }
+
+  logout(): void {
+    this.auth.logout();
+  }
+
+  isLoggedIn(): boolean {
+    return this.auth.isAuthenticated();
   }
 
   private _isDesktop(): boolean {

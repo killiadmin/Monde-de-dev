@@ -1,0 +1,55 @@
+<div class="auth-container">
+  <div class="header">
+    <div class="arrow-container">
+      <button mat-icon-button routerLink="/" class="back-button">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+
+    <div class="logo-container">
+      <img ngSrc="assets/logo_p6.png" alt="Logo MDD" class="logo" height="401" width="695">
+    </div>
+
+    <h1>Se connecter</h1>
+
+    <div class="empty-balise"></div>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>E-mail ou nom d'utilisateur</mat-label>
+      <input matInput type="text" formControlName="identifier" required>
+      <mat-error *ngIf="loginForm.get('identifier')?.invalid && loginForm.get('identifier')?.touched">
+        <span *ngIf="loginForm.get('identifier')?.errors?.['required']">L'identifiant est requis</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput type="password" formControlName="password" required>
+      <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <span *ngIf="loginForm.get('password')?.errors?.['required']">Le mot de passe est requis</span>
+      </mat-error>
+    </mat-form-field>
+
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+
+    <div class="auth-form-button">
+      <button
+        mat-flat-button
+        color="primary"
+        class="full-width"
+        type="submit"
+        [disabled]="loginForm.invalid || loading">
+
+        <span *ngIf="!loading">Se connecter</span>
+        <span *ngIf="loading">
+          <mat-icon class="loading-icon">hourglass_empty</mat-icon>
+          Connexion...
+        </span>
+      </button>
+    </div>
+  </form>
+</div>

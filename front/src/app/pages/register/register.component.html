@@ -1,0 +1,66 @@
+<div class="auth-container">
+  <div class="header">
+    <div class="arrow-container">
+      <button mat-icon-button routerLink="/" class="back-button">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+
+    <div class="logo-container">
+      <img ngSrc="assets/logo_p6.png" alt="Logo MDD" class="logo" height="401" width="695">
+    </div>
+
+    <h1>S'inscrire</h1>
+
+    <div class="empty-balise"></div>
+  </div>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nom d'utilisateur</mat-label>
+      <input matInput formControlName="username" required>
+      <mat-error *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+        <span *ngIf="registerForm.get('username')?.errors?.['required']">Le nom d'utilisateur est requis</span>
+        <span *ngIf="registerForm.get('username')?.errors?.['minlength']">Le nom d'utilisateur doit contenir au moins 3 caractères</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Adresse e-mail</mat-label>
+      <input matInput type="email" formControlName="email" required>
+      <mat-error *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+        <span *ngIf="registerForm.get('email')?.errors?.['required']">L'adresse e-mail est requise</span>
+        <span *ngIf="registerForm.get('email')?.errors?.['email']">L'adresse e-mail n'est pas valide</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput type="password" formControlName="password" required>
+      <mat-error *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+        <span *ngIf="registerForm.get('password')?.errors?.['required']">Le mot de passe est requis</span>
+        <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Le mot de passe doit contenir au moins 8 caractères</span>
+      </mat-error>
+    </mat-form-field>
+
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+
+    <div class="auth-form-button">
+      <button
+        mat-flat-button
+        color="primary"
+        class="full-width"
+        type="submit"
+        [disabled]="registerForm.invalid || loading">
+
+        <span *ngIf="!loading">S'inscrire</span>
+        <span *ngIf="loading">
+          <mat-icon class="loading-icon">hourglass_empty</mat-icon>
+          Inscription...
+        </span>
+      </button>
+    </div>
+  </form>
+</div>
