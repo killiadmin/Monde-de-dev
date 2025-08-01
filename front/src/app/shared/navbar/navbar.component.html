@@ -8,11 +8,15 @@
   </a>
 
   <nav class="nav-links" *ngIf="showNavLinks && isLoggedIn()" [class.open]="isMenuOpen">
-    <a mat-button class="btn-logout" (click)="logout()">Se déconnecter</a>
-    <a mat-button routerLink="/articles" (click)="closeMenu()">Articles</a>
-    <a mat-button routerLink="/themes" (click)="closeMenu()">Thèmes</a>
-    <a mat-button routerLink="/profil" (click)="closeMenu()">
-      <mat-icon>account_circle</mat-icon>
-    </a>
+    <div class="nav-top">
+      <a mat-button class="btn-logout" (click)="logout()">Se déconnecter</a>
+      <a mat-button routerLink="/articles" (click)="closeMenu()">Articles</a>
+      <a mat-button routerLink="/themes" (click)="closeMenu()">Thèmes</a>
+    </div>
+    <div class="nav-bottom">
+      <a mat-button routerLink="/profil" (click)="closeMenu()">
+        <mat-icon>account_circle</mat-icon>
+      </a>
+    </div>
   </nav>
 </mat-toolbar>
