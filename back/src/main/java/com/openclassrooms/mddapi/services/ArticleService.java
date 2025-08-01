@@ -29,7 +29,8 @@ public class ArticleService {
     }
 
     public Optional<ArticleDTO> getArticleById(final Long id) {
-        return articleRepository.findById(id)
+        return articleRepository
+                .findById(id)
                 .map(this::mapToDTO);
     }
 

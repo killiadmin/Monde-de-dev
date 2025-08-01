@@ -8,7 +8,7 @@ import {NgModule} from '@angular/core';
 import {ProfileComponent} from "./pages/user/profile/profile.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {RouterModule, Routes} from '@angular/router';
-import {Themes_ListComponent} from "./pages/themes/list/themes_list.component";
+import {Themes_ListComponent} from "./features/themes/components/list/themes_list.component";
 
 // consider a guard combined with canLoad / canActivate route option
 // to manage unauthenticated user to access private routes

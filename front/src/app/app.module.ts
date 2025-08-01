@@ -25,7 +25,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {ProfileComponent} from './pages/user/profile/profile.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './pages/register/register.component';
-import {Themes_ListComponent} from './pages/themes/list/themes_list.component';
+import {Themes_ListComponent} from './features/themes/components/list/themes_list.component';
 import {TokenInterceptor} from './auth/token.interceptor';
 
 @NgModule({

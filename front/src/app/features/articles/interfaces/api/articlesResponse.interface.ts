@@ -1,5 +1,5 @@
 import {Article} from "../models/article.model";
 
-export interface ArticleResponse {
+export interface ArticlesResponse {
   articles: Article[];
 }

@@ -27,7 +27,7 @@ public class ArticleController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ArticleDTO> getRental(@PathVariable Long id) {
+    public ResponseEntity<ArticleDTO> getArticle(@PathVariable Long id) {
         return articleService.getArticleById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
