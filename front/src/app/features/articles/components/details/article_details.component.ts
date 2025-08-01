@@ -16,7 +16,7 @@ export class Article_detailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private articleService: ArticleService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.articleId = this.route.snapshot.params['id'];

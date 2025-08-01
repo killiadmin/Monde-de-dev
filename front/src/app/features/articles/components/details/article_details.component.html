@@ -23,23 +23,24 @@
 
   <hr />
 
-  <h2 class="comments-title">Commentaires</h2>
+  <h2 class="comments-title">
+    Commentaires
+  </h2>
 
   <div class="comments-section">
-    <div class="comment-block">
-      <div class="comment-username">john_doe</div>
-      <mat-card class="comment-card">
-        <mat-card-content class="comment-text">
-          bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...        bla bla bla bla blabla bla bla bla...
-        </mat-card-content>
-      </mat-card>
+    <div *ngIf="article.comments.length === 0" class="no-comments">
+      <p>Aucun commentaire</p>
     </div>
 
-    <div class="comment-block">
-      <div class="comment-username">jane_doe</div>
+    <div *ngFor="let comment of article.comments" class="comment-block">
+      <div class="comment-header">
+        <div class="comment-username">
+          {{ comment.authorUsername }}
+        </div>
+      </div>
       <mat-card class="comment-card">
         <mat-card-content class="comment-text">
-          bla bla bla bla bla
+          {{ comment.content }}
         </mat-card-content>
       </mat-card>
     </div>

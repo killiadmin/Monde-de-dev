@@ -1,3 +1,5 @@
+import { Comment } from './comment.model';
+
 export interface Article {
   id: number;
   title: string;
@@ -6,4 +8,5 @@ export interface Article {
   themeTitle: string;
   createdAt: string;
   updatedAt: string;
+  comments: Comment[];
 }

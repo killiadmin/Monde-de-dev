@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class CommentDTO {
     private Integer commentId;
     private String content;
-    private String authorName;
+    private String authorUsername;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
