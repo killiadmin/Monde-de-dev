@@ -5,7 +5,7 @@ import {HomeComponent} from './pages/home/home.component';
 import {LoginComponent} from "./pages/login/login.component";
 import {NewComponent} from "./pages/articles/new/new.component";
 import {NgModule} from '@angular/core';
-import {ProfileComponent} from "./pages/user/profile/profile.component";
+import {ProfileComponent} from "./features/user/components/profile/profile.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {RouterModule, Routes} from '@angular/router';
 import {Themes_ListComponent} from "./features/themes/components/list/themes_list.component";
@@ -20,7 +20,7 @@ const routes: Routes = [
   {path: 'themes', title: 'Liste des thèmes', component: Themes_ListComponent, canActivate: [AuthGuard]},
   {path: 'articles/details/:id', title: 'Détails de l\'article', component: Article_detailsComponent, canActivate: [AuthGuard]},
   {path: 'articles/new', title: 'Création d\'un article', component: NewComponent, canActivate: [AuthGuard]},
-  {path: 'profile', title: 'Profil de l\'utilisateur', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'profil', title: 'Profil de l\'utilisateur', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: 'login'}
 ];
 

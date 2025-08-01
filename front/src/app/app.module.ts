@@ -22,7 +22,7 @@ import {NgOptimizedImage} from "@angular/common";
 import {MatCardModule} from "@angular/material/card";
 import {NewComponent} from './pages/articles/new/new.component';
 import {MatSelectModule} from "@angular/material/select";
-import {ProfileComponent} from './pages/user/profile/profile.component';
+import {ProfileComponent} from './features/user/components/profile/profile.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './pages/register/register.component';
 import {Themes_ListComponent} from './features/themes/components/list/themes_list.component';
