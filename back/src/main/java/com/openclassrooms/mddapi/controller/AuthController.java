@@ -38,4 +38,3 @@ public class AuthController {
         return ResponseEntity.ok(Collections.singletonMap("token", token));
     }
 }
-
