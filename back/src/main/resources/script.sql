@@ -50,11 +50,13 @@ CREATE TABLE articles
 CREATE TABLE comments
 (
     comment_id  INT AUTO_INCREMENT PRIMARY KEY,
+    com_article INT  NOT NULL,
     com_author  INT  NOT NULL,
     com_content TEXT NOT NULL,
     created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (com_author) REFERENCES users (user_id) ON DELETE CASCADE
+    FOREIGN KEY (com_author) REFERENCES users (user_id) ON DELETE CASCADE,
+    FOREIGN KEY (com_article) REFERENCES articles (art_id) ON DELETE CASCADE
 );
 
 CREATE TABLE users_li_themes
