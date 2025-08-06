@@ -2,14 +2,21 @@ package com.openclassrooms.mddapi.services;
 
 import com.openclassrooms.mddapi.dto.ArticleDTO;
 import com.openclassrooms.mddapi.dto.CommentDTO;
+import com.openclassrooms.mddapi.dto.CreateArticleDTO;
 import com.openclassrooms.mddapi.model.Article;
 import com.openclassrooms.mddapi.model.Comment;
+import com.openclassrooms.mddapi.model.Theme;
+import com.openclassrooms.mddapi.model.User;
 import com.openclassrooms.mddapi.repository.ArticleRepository;
 import com.openclassrooms.mddapi.repository.CommentRepository;
+import com.openclassrooms.mddapi.repository.ThemeRepository;
+import com.openclassrooms.mddapi.repository.UserRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +30,8 @@ public class ArticleService {
 
     private final ArticleRepository articleRepository;
     private final CommentRepository commentRepository;
+    private final UserRepository userRepository;
+    private final ThemeRepository themeRepository;
 
     public Map<String, List<ArticleDTO>> getAllArticles() {
         List<Article> articles = articleRepository.findAllByOrderByCreatedAtDesc();
@@ -38,6 +47,25 @@ public class ArticleService {
                 .map(article -> mapToDTO(article, true));
     }
 
+    public void newArticle(CreateArticleDTO createArticleDTO, Authentication authentication) {
+        String userEmail = authentication.getName();
+
+        User user = userRepository
+                .findByEmail(userEmail)
+                .orElseThrow(() -> new RuntimeException("User not found !"));
+
+        Theme theme = themeRepository
+                .findById(createArticleDTO.getThemeId())
+                .orElseThrow(() -> new RuntimeException("Theme not found !"));
+
+        Article article = new Article();
+        article.setArt_title(createArticleDTO.getTitle());
+        article.setArt_content(createArticleDTO.getContent());
+        article.setArt_author(user);
+        article.setThem_associated(theme);
+
+        articleRepository.save(article);
+    }
 
     private ArticleDTO mapToDTO(Article article, boolean includeComments) {
         List<CommentDTO> commentDTOs = Collections.emptyList();

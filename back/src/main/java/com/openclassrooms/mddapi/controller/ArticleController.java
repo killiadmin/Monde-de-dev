@@ -1,14 +1,14 @@
 package com.openclassrooms.mddapi.controller;
 
 import com.openclassrooms.mddapi.dto.ArticleDTO;
+import com.openclassrooms.mddapi.dto.CreateArticleDTO;
 import com.openclassrooms.mddapi.services.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -31,5 +31,15 @@ public class ArticleController {
         return articleService.getArticleById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/new")
+    public ResponseEntity<Map<String, String>> createArticle(
+            @RequestBody
+            CreateArticleDTO createArticleDTO,
+            Authentication authentication) {
+
+        articleService.newArticle(createArticleDTO, authentication);
+        return ResponseEntity.ok(Map.of("message", "Article created !"));
     }
 }

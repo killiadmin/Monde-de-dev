@@ -43,7 +43,9 @@ public class UserService implements UserDetailsService {
     }
 
     public UserDTO getAuthenticatedMe(String email) {
-        User user = userRepository.findByEmail(email);
+        User user = userRepository
+                .findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found !"));
 
         List<Theme> userThemes = themeRepository.findThemesByUserId(user.getUserId());
 
