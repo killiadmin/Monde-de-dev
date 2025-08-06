@@ -12,30 +12,43 @@
   </div>
 
   <div class="form-container">
-    <form>
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
       <div class="form-fields">
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Sélectionner un thème</mat-label>
-          <mat-select required>
-            <mat-option value="technologie">Technologie</mat-option>
-            <mat-option value="science">Science</mat-option>
-            <mat-option value="culture">Culture</mat-option>
+          <mat-select formControlName="themeId" required>
+            <mat-option *ngFor="let theme of themes" [value]="theme.id">
+              {{ theme.title }}
+            </mat-option>
           </mat-select>
+          <mat-error *ngIf="themeId?.hasError('required')">
+            Veuillez sélectionner un thème
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Titre de l'article</mat-label>
-          <input matInput required />
+          <input matInput formControlName="title" required />
+          <mat-error *ngIf="title?.hasError('required')">
+            Le titre est requis
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Contenu de l'article</mat-label>
-          <textarea matInput required rows="8"></textarea>
+          <textarea matInput formControlName="content" required rows="8"></textarea>
+          <mat-error *ngIf="content?.hasError('required')">
+            Le contenu est requis
+          </mat-error>
         </mat-form-field>
       </div>
 
       <div class="form-button">
-        <button mat-flat-button color="primary">
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          [disabled]="articleForm.invalid">
           Créer
         </button>
       </div>

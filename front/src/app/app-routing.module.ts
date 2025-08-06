@@ -3,7 +3,7 @@ import {AuthGuard} from "./auth/auth.guard";
 import {Article_detailsComponent} from "./features/articles/components/details/article_details.component";
 import {HomeComponent} from './pages/home/home.component';
 import {LoginComponent} from "./pages/login/login.component";
-import {NewComponent} from "./pages/articles/new/new.component";
+import {NewComponent} from "./features/articles/components/new/new.component";
 import {NgModule} from '@angular/core';
 import {ProfileComponent} from "./features/user/components/profile/profile.component";
 import {RegisterComponent} from "./pages/register/register.component";

@@ -29,10 +29,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
 
-    if (this.authService.isAuthenticated()) {
+    if (this.authService.isAuthenticated() && this.returnUrl) {
       this.router.navigate([this.returnUrl]);
     }
   }
+
 
   onSubmit(): void {
     if (this.loginForm.valid) {
@@ -44,7 +45,8 @@ export class LoginComponent implements OnInit {
       this.authService.login(loginData).subscribe({
         next: () => {
           this.loading = false;
-          this.router.navigate([this.returnUrl]);
+          const target = this.returnUrl && this.returnUrl.startsWith('/') ? this.returnUrl : '/articles';
+          this.router.navigate([target]);
         },
         error: (error) => {
           this.loading = false;

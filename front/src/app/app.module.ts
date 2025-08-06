@@ -5,7 +5,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {Article_detailsComponent} from './features/articles/components/details/article_details.component';
 import {HomeComponent} from './pages/home/home.component';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http'; // Ajout HttpClientModule
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './pages/login/login.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
@@ -20,7 +20,7 @@ import {NavbarComponent} from './shared/navbar/navbar.component';
 import {NgModule} from '@angular/core';
 import {NgOptimizedImage} from "@angular/common";
 import {MatCardModule} from "@angular/material/card";
-import {NewComponent} from './pages/articles/new/new.component';
+import {NewComponent} from './features/articles/components/new/new.component';
 import {MatSelectModule} from "@angular/material/select";
 import {ProfileComponent} from './features/user/components/profile/profile.component';
 import {ReactiveFormsModule} from '@angular/forms';
