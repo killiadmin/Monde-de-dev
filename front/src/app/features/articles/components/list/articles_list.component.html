@@ -3,7 +3,7 @@
     Créer un article
   </button>
 
-  <div class="sort-container">
+  <div class="sort-container" (click)="toggleSort()" style="cursor: pointer;">
     <span>Trier par</span>
     <mat-icon>{{ isAsc ? 'arrow_upward' : 'arrow_downward' }}</mat-icon>
   </div>

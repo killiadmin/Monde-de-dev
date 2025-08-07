@@ -25,10 +25,25 @@ export class Articles_listComponent implements OnInit {
     this.articleService.getArticles().subscribe({
       next: (response: { articles: Article[]; }) => {
         this.articles = response.articles;
+        this.sortArticles();
       },
       error: (error: any) => {
         console.error('Error when loading articles : ', error);
       }
+    });
+  }
+
+  toggleSort(): void {
+    this.isAsc = !this.isAsc;
+    this.sortArticles();
+  }
+
+  sortArticles(): void {
+    this.articles.sort((begin, ending) => {
+      const datebegin = new Date(begin.createdAt).getTime();
+      const dateEnding = new Date(ending.createdAt).getTime();
+
+      return this.isAsc ? datebegin - dateEnding : dateEnding - datebegin;
     });
   }
 
