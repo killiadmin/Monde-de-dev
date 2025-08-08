@@ -1,12 +1,12 @@
 package com.openclassrooms.mddapi.controller;
 
+import com.openclassrooms.mddapi.dto.SubRequestDTO;
 import com.openclassrooms.mddapi.dto.ThemeDTO;
 import com.openclassrooms.mddapi.services.ThemeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -22,5 +22,25 @@ public class ThemeController {
     public ResponseEntity<Map<String, List<ThemeDTO>>> getAllThemes() {
         Map<String, List<ThemeDTO>> response = themeService.getAllThemes();
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/subscribe")
+    public ResponseEntity<Map<String, String>> subscribeToTheme(
+            @RequestBody SubRequestDTO request,
+            Authentication authentication) {
+
+        themeService.subscribeUserToTheme(request, authentication);
+
+        return ResponseEntity.ok(Map.of("message", "Successful theme subscription !"));
+    }
+
+    @PostMapping("/unsubscribe")
+    public ResponseEntity<Map<String, String>> unsubscribeFromTheme(
+            @RequestBody SubRequestDTO request,
+            Authentication authentication) {
+
+            themeService.unsubscribeUserFromTheme(request, authentication);
+
+            return ResponseEntity.ok(Map.of("message", "Successful theme unsubscribe !"));
     }
 }

@@ -61,9 +61,10 @@ CREATE TABLE comments
 
 CREATE TABLE users_li_themes
 (
+    id      INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     them_id INT NOT NULL,
-    PRIMARY KEY (user_id, them_id),
+    UNIQUE KEY unique_user_theme (user_id, them_id),
     FOREIGN KEY (user_id) REFERENCES users (user_id) ON DELETE CASCADE,
     FOREIGN KEY (them_id) REFERENCES themes (them_id) ON DELETE CASCADE
 );
