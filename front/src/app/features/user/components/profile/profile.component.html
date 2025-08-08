@@ -56,7 +56,7 @@
           {{ theme.content }}
         </mat-card-content>
         <div class="form-button">
-          <button mat-flat-button color="primary">
+          <button mat-flat-button color="warn" (click)="unsubscribeFromTheme(theme.id)">
             Se désabonner
           </button>
         </div>

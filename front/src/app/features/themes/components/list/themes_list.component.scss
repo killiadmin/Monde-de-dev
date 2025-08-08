@@ -68,7 +68,6 @@
   max-width: 600px;
   border-radius: 10px;
   background-color: #f2f2f2;
-  cursor: pointer;
 
   @media (max-width: 768px) {
     max-width: 100%;
@@ -96,9 +95,12 @@
 }
 
 .subscribe-none{
-  display: none;
-  background-color: gray;
-  color: white
+  background-color: darkgray !important;
+  color: white !important;
+}
+
+button:disabled {
+  cursor: not-allowed;
 }
 
 .container-button{

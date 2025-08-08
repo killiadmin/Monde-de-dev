@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { UserService } from '../../services/user.service';
-import { User } from '../../interfaces/models/User.model';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {ThemeService} from '../../../themes/services/theme.service';
+import {UserService} from '../../services/user.service';
+import {User} from '../../interfaces/models/User.model';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +17,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private themeService: ThemeService,
     private fb: FormBuilder
   ) {
     this.profileForm = this.fb.group({
@@ -40,11 +42,20 @@ export class ProfileComponent implements OnInit {
           username: userData.username,
           email: userData.email
         });
+      }
+    });
+  }
 
-      },
-      error: (error) => {
-        console.error('Error when loading the profile : ', error);
-        this.error = 'Erreur lors du chargement du profil';
+  unsubscribeFromTheme(themeId: number): void {
+    if (!this.user) {
+      return;
+    }
+
+    this.themeService.unsubscribeFromTheme(themeId).subscribe({
+      next: () => {
+        if (this.user && this.user.themes) {
+          this.user.themes = this.user.themes.filter(theme => theme.id !== themeId);
+        }
       }
     });
   }

@@ -9,11 +9,11 @@
       {{ theme.content }}
     </mat-card-content>
     <div class="container-button">
-      <button mat-flat-button color="primary" class="full-width">
+      <button mat-flat-button color="primary" class="full-width" *ngIf="!theme.isSubscribed" (click)="subscribeToTheme(theme.id)">
         S'abonner
       </button>
-      <button mat-flat-button class="subscribe-none">
-        Déjà abonné
+      <button mat-flat-button class="subscribe-none" *ngIf="theme.isSubscribed" [disabled]="true">
+      Déjà abonné
       </button>
     </div>
   </mat-card>

@@ -7,7 +7,8 @@ import {Theme} from "../../interfaces/models/Theme.model";
   templateUrl: './themes_list.component.html',
   styleUrls: ['./themes_list.component.scss']
 })
-export class Themes_ListComponent implements OnInit {
+
+export class Themes_listComponent implements OnInit {
   themes: Theme[] = [];
 
   constructor(private themeService: ThemeService) {}
@@ -20,10 +21,22 @@ export class Themes_ListComponent implements OnInit {
     this.themeService.getThemes().subscribe({
       next: (response: { themes: Theme[]; }) => {
         this.themes = response.themes;
-      },
-      error: (error: any) => {
-        console.error('Error when loading themes : ', error);
       }
     })
+  }
+
+  subscribeToTheme(themeId: number): void {
+    this.themeService.subscribeToTheme(themeId).subscribe({
+      next: () => {
+        this.updateThemeSubscriptionStatus(themeId, true);
+      }
+    });
+  }
+
+  private updateThemeSubscriptionStatus(themeId: number, isSubscribed: boolean): void {
+    const theme = this.themes.find(t => t.id === themeId);
+    if (theme) {
+      theme.isSubscribed = isSubscribed;
+    }
   }
 }
