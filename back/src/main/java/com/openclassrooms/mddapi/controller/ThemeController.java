@@ -19,8 +19,8 @@ public class ThemeController {
     private final ThemeService themeService;
 
     @GetMapping("")
-    public ResponseEntity<Map<String, List<ThemeDTO>>> getAllThemes() {
-        Map<String, List<ThemeDTO>> response = themeService.getAllThemes();
+    public ResponseEntity<Map<String, List<ThemeDTO>>> getAllThemes(Authentication authentication) {
+        Map<String, List<ThemeDTO>> response = themeService.getAllThemes(authentication);
         return ResponseEntity.ok(response);
     }
 

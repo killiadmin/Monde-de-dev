@@ -53,7 +53,8 @@ public class UserService implements UserDetailsService {
                 .map(theme -> new ThemeDTO(
                         theme.getThem_id(),
                         theme.getThem_title(),
-                        theme.getThem_content()
+                        theme.getThem_content(),
+                        true
                 )).collect(Collectors.toList());
 
         UserDTO userDTO = new UserDTO(

@@ -24,11 +24,20 @@ public class ThemeService {
     private final UserLiThemeRepository userLiThemeRepository;
     private final UserRepository userRepository;
 
-    public Map<String, List<ThemeDTO>> getAllThemes() {
+    public Map<String, List<ThemeDTO>> getAllThemes(Authentication authentication) {
         List<Theme> themes = themeRepository.findAll();
 
+        Long currentUserId = null;
+
+        if (authentication != null) {
+            String userEmail = authentication.getName();
+            User currentUser = userRepository.findByEmail(userEmail).orElse(null);
+            currentUserId = currentUser != null ? currentUser.getUserId() : null;
+        }
+
+        final Long userId = currentUserId;
         List<ThemeDTO> themeDTOs = themes.stream()
-                .map(this::mapToDTO)
+                .map(theme -> mapToDTO(theme, userId))
                 .toList();
 
         return Map.of("themes", themeDTOs);
@@ -73,11 +82,18 @@ public class ThemeService {
         userLiThemeRepository.deleteByUserIdAndThemId(user.getUserId(), theme.getThem_id());
     }
 
-    private ThemeDTO mapToDTO(Theme theme) {
+    private ThemeDTO mapToDTO(Theme theme, Long userId) {
+        boolean isSubscribed = false;
+
+        if (userId != null) {
+            isSubscribed = userLiThemeRepository.existsByUserIdAndThemId(userId, theme.getThem_id());
+        }
+
         return new ThemeDTO(
                 theme.getThem_id(),
                 theme.getThem_title(),
-                theme.getThem_content()
+                theme.getThem_content(),
+                isSubscribed
         );
     }
 }
