@@ -1,9 +1,10 @@
-import {Article} from "../interfaces/models/article.model";
+import {Article} from '../interfaces/models/article.model';
 import {ArticlesResponse} from '../interfaces/api/articlesResponse.interface';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {NewArticle} from "../interfaces/api/new-article.interface";
+import {NewArticle} from '../interfaces/api/new-article.interface';
+import {NewComment} from '../interfaces/api/new-comment.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +19,14 @@ export class ArticleService {
   }
 
   public getArticle(id: string): Observable<Article> {
-    return this.httpClient.get<Article>(`${this.pathService}/${id}`);
+    return this.httpClient.get<Article>(this.pathService + '/' + id);
   }
 
   public newArticle(article: NewArticle): Observable<{message: string}> {
-    return this.httpClient.post<{message: string}>(`${this.pathService}/new`, article);
+    return this.httpClient.post<{message: string}>(this.pathService + '/new', article);
+  }
+
+  public newComment(articleId: string, comment: NewComment): Observable<{message: string}> {
+    return this.httpClient.post<{message: string}>(this.pathService + '/' + articleId + '/comments', comment);
   }
 }

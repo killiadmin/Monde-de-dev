@@ -49,13 +49,13 @@
   <div class="comment-form-container">
     <mat-card>
       <mat-card-content>
-        <form>
+        <form [formGroup]="commentForm" (ngSubmit)="onSubmitComment()">
           <div class="comment-form">
             <mat-form-field appearance="fill" class="comment-input">
-              <mat-label>Écrivez ici votre commentaire</mat-label>
-              <textarea matInput rows="4"></textarea>
+              <mat-label>Contenu du commentaire</mat-label>
+              <textarea matInput rows="4" formControlName="content" placeholder="..."></textarea>
             </mat-form-field>
-            <button mat-stroked-button color="primary" type="submit" class="send-button">
+            <button mat-stroked-button color="primary" type="submit" class="send-button" [disabled]="!commentForm.get('content')?.value?.trim()">
               <mat-icon color="primary" class="send-icon">send</mat-icon>
             </button>
           </div>
