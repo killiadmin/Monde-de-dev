@@ -36,7 +36,7 @@ public class UserUpdateService {
 
         User user = userRepository
                 .findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User not found with ID : " + userId));
+                .orElseThrow(() -> new UserNotFoundException("Utilisateur introuvable !"));
 
         validateUsernameUniqueness(updateUserProfileDTO.getUsername(), user);
         validateEmailUniqueness(updateUserProfileDTO.getEmail(), user);
@@ -53,7 +53,7 @@ public class UserUpdateService {
             User existingUser = userRepository.findByEmailOrUsername(newUsername);
 
             if (existingUser != null && !existingUser.getUserId().equals(currentUser.getUserId())) {
-                throw new DuplicateUsernameException("This username is already used !");
+                throw new DuplicateUsernameException("Cet identifiant est déjà utilisée !");
             }
         }
     }
@@ -63,7 +63,7 @@ public class UserUpdateService {
             Optional<User> existingUser = userRepository.findByEmail(newEmail);
 
             if (existingUser.isPresent() && !existingUser.get().getUserId().equals(currentUser.getUserId())) {
-                throw new DuplicateEmailException("This email address is already used !");
+                throw new DuplicateEmailException("Cette adresse e-mail est déjà utilisée !");
             }
         }
     }
@@ -73,8 +73,24 @@ public class UserUpdateService {
         user.setEmail(updateDTO.getEmail());
 
         if (updateDTO.getPassword() != null && !updateDTO.getPassword().trim().isEmpty()) {
+            validatePassword(updateDTO.getPassword().trim());
             String encodedPassword = passwordEncoder.encode(updateDTO.getPassword().trim());
             user.setPassword(encodedPassword);
+        }
+    }
+
+    private void validatePassword(String password) {
+        if (password.length() < 8) {
+            throw new IllegalArgumentException("Le mot de passe doit contenir au moins 8 caractères");
+        }
+
+        boolean hasLowercase = password.matches(".*[a-z].*");
+        boolean hasUppercase = password.matches(".*[A-Z].*");
+        boolean hasDigit = password.matches(".*\\d.*");
+        boolean hasSpecialChar = password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*");
+
+        if (!(hasLowercase && hasUppercase && hasDigit && hasSpecialChar)) {
+            throw new IllegalArgumentException("Le mot de passe doit contenir au moins 8 caractères, une minuscule, une majuscule, un chiffre et un caractère spécial");
         }
     }
 

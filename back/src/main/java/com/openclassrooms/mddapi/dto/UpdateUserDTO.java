@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.dto;
 
-import com.openclassrooms.mddapi.validation.ValidPassword;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +19,5 @@ public class UpdateUserDTO {
     @Email(message = "The email address must be valid")
     private String email;
 
-    @ValidPassword
     private String password;
 }
