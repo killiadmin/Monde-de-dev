@@ -4,7 +4,6 @@ import java.time.Instant;
 
 import org.springframework.beans.factory.annotation.Value;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwsHeader;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
@@ -25,14 +24,16 @@ public class JwtUtils {
         this.jwtEncoder = jwtEncoder;
     }
 
-    public String generateToken(Authentication authentication) {
+    public String generateTokenForUser(Long userId, String email, String role) {
         Instant now = Instant.now();
 
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer("self")
                 .issuedAt(now)
                 .expiresAt(now.plusSeconds(jwtExpirationInSeconds))
-                .subject(authentication.getName())
+                .subject(userId.toString())
+                .claim("email", email)
+                .claim("role", role)
                 .build();
 
         return jwtEncoder.encode(JwtEncoderParameters.from(

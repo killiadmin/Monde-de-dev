@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -29,22 +28,31 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String identifier) throws UsernameNotFoundException {
-        com.openclassrooms.mddapi.model.User user = userRepository.findByEmailOrUsername(identifier);
+        com.openclassrooms.mddapi.model.User user;
 
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found with identifier : " + identifier);
+        if (identifier.matches("\\d+")) {
+            Long userId = Long.valueOf(identifier);
+            user = userRepository
+                    .findById(userId)
+                    .orElseThrow(() -> new UsernameNotFoundException("User not found with ID : " + identifier));
+        } else {
+            user = userRepository.findByEmailOrUsername(identifier);
+            if (user == null) {
+                throw new UsernameNotFoundException("User not found with identifier : " + identifier);
+            }
         }
 
         return org.springframework.security.core.userdetails.User
-                .withUsername(user.getEmail())
+                .withUsername(user.getUserId().toString())
                 .password(user.getPassword())
                 .roles(user.getRole())
                 .build();
     }
 
-    public UserDTO getAuthenticatedMe(String email) {
-        User user = userRepository
-                .findByEmail(email)
+    public UserDTO getAuthenticatedMe(String userIdString) {
+        Long userId = Long.valueOf(userIdString);
+
+        User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found !"));
 
         List<Theme> userThemes = themeRepository.findThemesByUserId(user.getUserId());

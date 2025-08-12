@@ -31,7 +31,12 @@ public class AuthService {
             throw new UnauthorizedException("Invalid credentials !");
         }
 
-        return jwtUtils.generateToken(authentication);
+        String userIdString = authentication.getName();
+        Long userId = Long.valueOf(userIdString);
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UnauthorizedException("User not found !"));
+
+        return jwtUtils.generateTokenForUser(user.getUserId(), user.getEmail(), user.getRole());
     }
 
     public String registerAndGenerateToken(RegisterDTO registerDTO) throws Exception {
@@ -39,7 +44,11 @@ public class AuthService {
         String password = registerDTO.getPassword().trim();
         String username = registerDTO.getUsername().trim();
 
-        if (email.isEmpty() || password.isEmpty() || username.isEmpty() || userRepository.findByEmail(email) != null) {
+        if (email.isEmpty() || password.isEmpty() || username.isEmpty()) {
+            throw new Exception("An error occurred during recording !");
+        }
+
+        if (userRepository.findByEmail(email).isPresent()) {
             throw new Exception("An error occurred during recording !");
         }
 
@@ -48,12 +57,8 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(password));
         user.setUsername(username);
 
-        userRepository.save(user);
+        User savedUser = userRepository.save(user);
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(email, password)
-        );
-
-        return jwtUtils.generateToken(authentication);
+        return jwtUtils.generateTokenForUser(savedUser.getUserId(), savedUser.getEmail(), savedUser.getRole());
     }
 }
