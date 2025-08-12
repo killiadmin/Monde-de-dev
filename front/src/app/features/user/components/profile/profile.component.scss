@@ -119,3 +119,14 @@ form {
   font-weight: bold;
   color: darkred;
 }
+
+.success-container {
+  margin-bottom: 16px;
+
+  .success-message {
+    display: flex;
+    justify-content: center;
+    color: #4caf50;
+    font-weight: bold;
+  }
+}

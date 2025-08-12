@@ -35,7 +35,6 @@ export class AuthService {
           this.router.navigate(['/articles']);
         }),
         catchError(error => {
-          console.error('Erreur de connexion:', error);
           return throwError(() => error);
         })
       );
@@ -50,7 +49,6 @@ export class AuthService {
           this.router.navigate(['/articles']);
         }),
         catchError(error => {
-          console.error('Erreur d\'inscription:', error);
           return throwError(() => error);
         })
       );
@@ -91,7 +89,6 @@ export class AuthService {
 
       return true;
     } catch (error) {
-      console.error('Token invalide : ', error);
       this.logout();
       return false;
     }
