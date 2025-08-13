@@ -5,10 +5,9 @@ import com.openclassrooms.mddapi.dto.CreateArticleDTO;
 import com.openclassrooms.mddapi.services.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -37,9 +36,9 @@ public class ArticleController {
     public ResponseEntity<Map<String, String>> createArticle(
             @RequestBody
             CreateArticleDTO createArticleDTO,
-            Authentication authentication) {
+            @AuthenticationPrincipal String userIdString) {
 
-        articleService.newArticle(createArticleDTO, authentication);
+        articleService.newArticle(createArticleDTO, userIdString);
         return ResponseEntity.ok(Map.of("message", "Article created !"));
     }
 }

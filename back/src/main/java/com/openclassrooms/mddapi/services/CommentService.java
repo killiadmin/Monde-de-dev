@@ -8,7 +8,6 @@ import com.openclassrooms.mddapi.repository.ArticleRepository;
 import com.openclassrooms.mddapi.repository.CommentRepository;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,10 +20,12 @@ public class CommentService {
     private final ArticleRepository articleRepository;
     private final UserRepository userRepository;
 
-    public void createComment(Long articleId, CreateCommentDTO createCommentDTO, Authentication authentication) {
-        String userEmail = authentication.getName();
+    public void createComment(Long articleId, CreateCommentDTO createCommentDTO, String userIdString) {
+        long userId;
+        userId = Long.parseLong(userIdString);
+
         User user = userRepository
-                .findByEmail(userEmail)
+                .findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found !"));
 
         Article article = articleRepository

@@ -3,6 +3,7 @@ package com.openclassrooms.mddapi.services;
 import com.openclassrooms.mddapi.dto.ArticleDTO;
 import com.openclassrooms.mddapi.dto.CommentDTO;
 import com.openclassrooms.mddapi.dto.CreateArticleDTO;
+import com.openclassrooms.mddapi.exception.UserNotFoundException;
 import com.openclassrooms.mddapi.model.Article;
 import com.openclassrooms.mddapi.model.Comment;
 import com.openclassrooms.mddapi.model.Theme;
@@ -13,10 +14,8 @@ import com.openclassrooms.mddapi.repository.ThemeRepository;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -47,12 +46,13 @@ public class ArticleService {
                 .map(article -> mapToDTO(article, true));
     }
 
-    public void newArticle(CreateArticleDTO createArticleDTO, Authentication authentication) {
-        String userEmail = authentication.getName();
+    public void newArticle(CreateArticleDTO createArticleDTO, String userIdString) {
+        long userId;
+        userId = Long.parseLong(userIdString);
 
         User user = userRepository
-                .findByEmail(userEmail)
-                .orElseThrow(() -> new RuntimeException("User not found !"));
+                .findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("Utilisateur introuvable !"));
 
         Theme theme = themeRepository
                 .findById(createArticleDTO.getThemeId())
