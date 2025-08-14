@@ -27,10 +27,6 @@ h1 {
   display: none;
 }
 
-.error-message {
-  text-align:center;
-}
-
 @media (max-width: 600px) {
   .auth-container {
     width: fit-content;
@@ -63,6 +59,7 @@ h1 {
   .logo {
     max-height: 200px;
     width: auto;
+    cursor: pointer;
   }
 
   .empty-balise {

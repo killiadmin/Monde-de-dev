@@ -3,7 +3,7 @@
     <mat-icon>{{ isMenuOpen ? 'close' : 'menu' }}</mat-icon>
   </button>
 
-  <a routerLink="/" class="logo">
+  <a (click)="redirectToHome()" class="logo">
     <img [src]="logoPath" alt="Logo MDD">
   </a>
 

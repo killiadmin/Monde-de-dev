@@ -1,12 +1,12 @@
 import {Articles_listComponent} from "./features/articles/components/list/articles_list.component";
 import {AuthGuard} from "./auth/auth.guard";
 import {Article_detailsComponent} from "./features/articles/components/details/article_details.component";
-import {HomeComponent} from './pages/home/home.component';
-import {LoginComponent} from "./pages/login/login.component";
+import {HomeComponent} from './features/home/components/home.component';
+import {LoginComponent} from "./features/login/components/login.component";
 import {NewComponent} from "./features/articles/components/new/new.component";
 import {NgModule} from '@angular/core';
 import {ProfileComponent} from "./features/user/components/profile/profile.component";
-import {RegisterComponent} from "./pages/register/register.component";
+import {RegisterComponent} from "./features/register/components/register.component";
 import {RouterModule, Routes} from '@angular/router';
 import {Themes_listComponent} from "./features/themes/components/list/themes_list.component";
 

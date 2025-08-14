@@ -10,6 +10,10 @@
   z-index: 1000;
   justify-content: space-between;
 
+  .logo {
+    cursor: pointer;
+  }
+
   .logo img {
     height: 60px;
     width: auto;

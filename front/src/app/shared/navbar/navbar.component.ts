@@ -52,8 +52,12 @@ export class NavbarComponent implements OnInit {
     return this.auth.isAuthenticated();
   }
 
-  private _isDesktop(): boolean {
-    return window.innerWidth > 768;
+  redirectToHome(): void {
+    if (this.isLoggedIn()) {
+      this.router.navigate(['/articles']);
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 
   @HostListener('window:resize')
@@ -61,5 +65,9 @@ export class NavbarComponent implements OnInit {
     if (this._isDesktop() && this.isMenuOpen) {
       this.isMenuOpen = false;
     }
+  }
+
+  private _isDesktop(): boolean {
+    return window.innerWidth > 768;
   }
 }
