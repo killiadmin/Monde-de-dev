@@ -9,7 +9,6 @@ import com.openclassrooms.mddapi.repository.ThemeRepository;
 import com.openclassrooms.mddapi.repository.UserLiThemeRepository;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -24,18 +23,11 @@ public class ThemeService {
     private final UserLiThemeRepository userLiThemeRepository;
     private final UserRepository userRepository;
 
-    public Map<String, List<ThemeDTO>> getAllThemes(Authentication authentication) {
+    public Map<String, List<ThemeDTO>> getAllThemes(String userIdString) {
         List<Theme> themes = themeRepository.findAll();
 
-        Long currentUserId = null;
+        final Long userId = userIdString != null ? Long.parseLong(userIdString) : null;
 
-        if (authentication != null) {
-            String userEmail = authentication.getName();
-            User currentUser = userRepository.findByEmail(userEmail).orElse(null);
-            currentUserId = currentUser != null ? currentUser.getUserId() : null;
-        }
-
-        final Long userId = currentUserId;
         List<ThemeDTO> themeDTOs = themes.stream()
                 .map(theme -> mapToDTO(theme, userId))
                 .toList();
@@ -44,11 +36,12 @@ public class ThemeService {
     }
 
     @Transactional
-    public void subscribeUserToTheme(SubRequestDTO subRequestDTO, Authentication authentication) {
-        String userEmail = authentication.getName();
+    public void subscribeUserToTheme(SubRequestDTO subRequestDTO, String userIdString) {
+        long userId;
+        userId = Long.parseLong(userIdString);
 
         User user = userRepository
-                .findByEmail(userEmail)
+                .findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found !"));
 
         Theme theme = themeRepository
@@ -64,11 +57,12 @@ public class ThemeService {
     }
 
     @Transactional
-    public void unsubscribeUserFromTheme(SubRequestDTO subRequestDTO, Authentication authentication) {
-        String userEmail = authentication.getName();
+    public void unsubscribeUserFromTheme(SubRequestDTO subRequestDTO, String userIdString) {
+        long userId;
+        userId = Long.parseLong(userIdString);
 
         User user = userRepository
-                .findByEmail(userEmail)
+                .findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found !"));
 
         Theme theme = themeRepository
