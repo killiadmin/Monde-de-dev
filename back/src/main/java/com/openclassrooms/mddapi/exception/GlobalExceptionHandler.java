@@ -49,7 +49,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> handleAuthenticationException(AuthenticationException ex) {
         return createErrorResponse(
                 HttpStatus.UNAUTHORIZED,
-                "Authentication error",
+                "Erreur d'authentification",
                 ex.getMessage()
         );
     }
@@ -136,6 +136,33 @@ public class GlobalExceptionHandler {
                 HttpStatus.INTERNAL_SERVER_ERROR,
                 "Internal Server Error",
                 ex.getMessage()
+        );
+    }
+
+    @ExceptionHandler(org.springframework.dao.DataIntegrityViolationException.class)
+    public ResponseEntity<Object> handleDataIntegrityViolationException(org.springframework.dao.DataIntegrityViolationException ex) {
+        String message = ex.getMessage();
+
+        if (message != null) {
+            if (message.contains("username") || message.contains("users.username")) {
+                return createErrorResponse(
+                        HttpStatus.CONFLICT,
+                        "Conflit de données",
+                        message
+                );
+            } else if (message.contains("email") || message.contains("users.email")) {
+                return createErrorResponse(
+                        HttpStatus.CONFLICT,
+                        "Conflit de données",
+                        message
+                );
+            }
+        }
+
+        return createErrorResponse(
+                HttpStatus.BAD_REQUEST,
+                "Violation des contraintes de données",
+                message
         );
     }
 

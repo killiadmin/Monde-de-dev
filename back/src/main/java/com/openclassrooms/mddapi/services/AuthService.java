@@ -3,6 +3,8 @@ package com.openclassrooms.mddapi.services;
 import com.openclassrooms.mddapi.configuration.JwtUtils;
 import com.openclassrooms.mddapi.dto.LoginDTO;
 import com.openclassrooms.mddapi.dto.RegisterDTO;
+import com.openclassrooms.mddapi.exception.DuplicateEmailException;
+import com.openclassrooms.mddapi.exception.DuplicateUsernameException;
 import com.openclassrooms.mddapi.exception.UnauthorizedException;
 import com.openclassrooms.mddapi.model.User;
 import com.openclassrooms.mddapi.repository.UserRepository;
@@ -28,13 +30,13 @@ public class AuthService {
         );
 
         if (authentication == null || !authentication.isAuthenticated()) {
-            throw new UnauthorizedException("Invalid credentials !");
+            throw new UnauthorizedException("Les identifiants sont incorrects !");
         }
 
         String userIdString = authentication.getName();
         Long userId = Long.valueOf(userIdString);
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UnauthorizedException("User not found !"));
+                .orElseThrow(() -> new UnauthorizedException("L'utilisateur n'existe pas !"));
 
         return jwtUtils.generateTokenForUser(user.getUserId(), user.getEmail(), user.getRole());
     }
@@ -45,11 +47,15 @@ public class AuthService {
         String username = registerDTO.getUsername().trim();
 
         if (email.isEmpty() || password.isEmpty() || username.isEmpty()) {
-            throw new Exception("An error occurred during recording !");
+            throw new IllegalArgumentException("Tous les champs sont requis");
         }
 
         if (userRepository.findByEmail(email).isPresent()) {
-            throw new Exception("An error occurred during recording !");
+            throw new DuplicateEmailException("Cette adresse email est déjà utilisée");
+        }
+
+        if (userRepository.findByUsername(username).isPresent()) {
+            throw new DuplicateUsernameException("Ce nom d'utilisateur est déjà utilisé");
         }
 
         User user = new User();
