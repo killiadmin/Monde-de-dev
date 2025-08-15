@@ -25,6 +25,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {ProfileComponent} from './features/user/components/profile/profile.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RegisterComponent} from './features/register/components/register.component';
+import {SharedModule} from './shared/shared.module';
 import {Themes_listComponent} from './features/themes/components/list/themes_list.component';
 import {TokenInterceptor} from './auth/token.interceptor';
 
@@ -54,11 +55,12 @@ import {TokenInterceptor} from './auth/token.interceptor';
     MatFormFieldModule,
     MatSidenavModule,
     MatToolbarModule,
-    NgOptimizedImage,
-    ReactiveFormsModule,
     MatCardModule,
     MatSelectModule,
     MatProgressSpinnerModule,
+    NgOptimizedImage,
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }

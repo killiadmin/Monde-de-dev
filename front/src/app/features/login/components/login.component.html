@@ -1,20 +1,4 @@
-<div class="auth-container">
-  <div class="header">
-    <div class="arrow-container">
-      <button mat-icon-button routerLink="/" class="back-button">
-        <mat-icon>arrow_back</mat-icon>
-      </button>
-    </div>
-
-    <div class="logo-container">
-      <img ngSrc="../../../assets/logo_p6.png" alt="Logo MDD" class="logo" height="401" width="695">
-    </div>
-
-    <h1>Se connecter</h1>
-
-    <div class="empty-balise"></div>
-  </div>
-
+<app-auth-header title="Se connecter">
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>E-mail ou nom d'utilisateur</mat-label>
@@ -52,4 +36,4 @@
       </button>
     </div>
   </form>
-</div>
+</app-auth-header>

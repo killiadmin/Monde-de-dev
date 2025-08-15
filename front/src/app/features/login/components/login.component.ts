@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../auth/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../../../auth/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
   onSubmit(): void {
     if (this.loginForm.valid) {
       this.loading = true;
@@ -52,16 +51,11 @@ export class LoginComponent implements OnInit {
           this.loading = false;
 
           if (error.status === 401) {
-            this.error = 'Identifier or incorrect password';
+            this.error = error.error?.message;
           } else {
-            this.error = 'An error occurred when connection';
+            this.error = 'Une erreur est survenue lors de la connexion de votre espace';
           }
         }
-      });
-    } else {
-      Object.keys(this.loginForm.controls).forEach(key => {
-        const control = this.loginForm.get(key);
-        control?.markAsTouched();
       });
     }
   }
